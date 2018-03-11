@@ -8,10 +8,24 @@ public class QuaternionTest {
 
 
     @Test
+    public void getAngleTest(){
+        double angle = Math.PI/4;
+        Quaternion q = Quaternion.create(angle, 1,2,4) ;
+        Assert.assertEquals(angle , Quaternion.getAngle(q) , delta);
+    }
+    @Test
+    public void getVectorLengthTest(){
+        double[] vect = new double[] { Math.sqrt(14)/14,-Math.sqrt(14)/7, (3*Math.sqrt(14))/14};
+        Quaternion quaternion = Quaternion.create(Math.PI/6,vect[0], vect[1], vect[2]);
+        Assert.assertArrayEquals(vect, Quaternion.getVectorLength(quaternion) ,delta);
+    }
+
+    @Test
     public void getScalarTest() {
         Quaternion quaternion2 = quaternion.getScalar(2);
         Assert.assertThat(quaternion2, CoreMatchers.is(new Quaternion(2,4,6,8)));
     }
+
 
     @Test
     public void getSummationTest() {
