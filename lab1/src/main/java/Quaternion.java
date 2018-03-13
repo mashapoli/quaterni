@@ -34,14 +34,14 @@ public class Quaternion {
         return new Quaternion(newX, newY, newZ, newW);
     }
 
-    public static double getAngle(Quaternion quaternion) {
-
-        return acos(quaternion.w) * 2;
+    public double getAngle() {
+        return acos(this.w) * 2;
     }
 
-    public static double[] getUnitVector(Quaternion quaternion) {
-        double angle = getAngle(quaternion) / 2;
-        return new double[]{quaternion.x / sin(angle), quaternion.y / sin(angle), quaternion.z / sin(angle)};
+    public double[] getUnitVector() {
+        double angle = getAngle() / 2;
+        double newSinAngle  = sin(angle);
+        return new double[]{this.x / newSinAngle, this.y / newSinAngle, this.z / newSinAngle};
     }
 
     public Quaternion getScalar(double s) {

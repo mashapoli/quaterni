@@ -9,15 +9,15 @@ public class QuaternionTest {
     @Test
     public void getAngleTest() {
         double angle = Math.PI / 4;
-        Quaternion q = Quaternion.create(angle, Math.sqrt(14) / 14, -Math.sqrt(14) / 7, (3 * Math.sqrt(14)) / 14);
-        Assert.assertEquals(angle, Quaternion.getAngle(q), delta);
+        Quaternion q = quaternion.create(angle, Math.sqrt(14) / 14, -Math.sqrt(14) / 7, (3 * Math.sqrt(14)) / 14);
+        Assert.assertEquals(angle, q.getAngle(), delta);
     }
 
     @Test
     public void getUnitVectorTest() {
         double[] vector = new double[]{Math.sqrt(14) / 14, -Math.sqrt(14) / 7, (3 * Math.sqrt(14)) / 14};
-        Quaternion quaternion = Quaternion.create(Math.PI / 6, vector[0], vector[1], vector[2]);
-        Assert.assertArrayEquals(vector, Quaternion.getUnitVector(quaternion), delta);
+        Quaternion quaternion2 = quaternion.create(Math.PI / 6, vector[0], vector[1], vector[2]);
+        Assert.assertArrayEquals(vector, quaternion2.getUnitVector(), delta);
     }
 
     @Test
