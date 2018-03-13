@@ -6,7 +6,6 @@ public class QuaternionTest {
     private Quaternion quaternion = new Quaternion(1, 2, 3, 4);
     private double delta = 0.00001;
 
-
     @Test
     public void getAngleTest() {
         double angle = Math.PI / 4;
