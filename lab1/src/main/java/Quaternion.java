@@ -12,33 +12,36 @@ public class Quaternion {
         this.z = z;
         this.w = w;
     }
+
     public static Quaternion create(final double angle, final double x, final double y, final double z) {
         double newX, newY, newZ, newW;
 
         double half_Angle = angle / 2;
-         newW = cos(half_Angle);
+        newW = cos(half_Angle);
         if (x == 0 || y == 0 || z == 0) {
             newX = newY = newZ = 0;
 
         } else {
             double newSin = sin(half_Angle);
-             double vectorLength = sqrt(x * x + y * y + z * z);
-             if (abs(vectorLength - 1.0) > 1e-6){
-                 throw new IllegalStateException();
-             }
-            newX = x *newSin * vectorLength;
-            newY = y * newSin * vectorLength;
-            newZ = z * newSin * vectorLength;
+            double unitVector = sqrt(x * x + y * y + z * z);
+            if (abs(unitVector - 1.0) > 1e-6) {
+                throw new IllegalStateException();
+            }
+            newX = x * newSin * unitVector;
+            newY = y * newSin * unitVector;
+            newZ = z * newSin * unitVector;
         }
-        return new Quaternion(newX,newY,newZ,newW);
+        return new Quaternion(newX, newY, newZ, newW);
     }
-    public static double getAngle(Quaternion quaternion){
 
-            return  acos(quaternion.w) * 2 ;
+    public static double getAngle(Quaternion quaternion) {
+
+        return acos(quaternion.w) * 2;
     }
-    public static double[] getVectorLength(Quaternion quaternion){
-        double angle = getAngle(quaternion)/2;
-        return new double[] {quaternion.x/sin(angle), quaternion.y/sin(angle), quaternion.z/sin(angle)} ;
+
+    public static double[] getUnitVector(Quaternion quaternion) {
+        double angle = getAngle(quaternion) / 2;
+        return new double[]{quaternion.x / sin(angle), quaternion.y / sin(angle), quaternion.z / sin(angle)};
     }
 
     public Quaternion getScalar(double s) {
@@ -94,7 +97,6 @@ public class Quaternion {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,14 +131,5 @@ public class Quaternion {
                 ", w=" + w +
                 '}';
     }
-
-
-
-
-    public static void main(String[] args) {
-        Quaternion q = Quaternion.create(1, 2, 3, 4);
-
-    }
-
 
 }
