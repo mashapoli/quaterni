@@ -15,9 +15,9 @@ public class QuaternionTest {
 
     @Test
     public void getUnitVectorTest() {
-        double[] vect = new double[]{Math.sqrt(14) / 14, -Math.sqrt(14) / 7, (3 * Math.sqrt(14)) / 14};
-        Quaternion quaternion = Quaternion.create(Math.PI / 6, vect[0], vect[1], vect[2]);
-        Assert.assertArrayEquals(vect, Quaternion.getUnitVector(quaternion), delta);
+        double[] vector = new double[]{Math.sqrt(14) / 14, -Math.sqrt(14) / 7, (3 * Math.sqrt(14)) / 14};
+        Quaternion quaternion = Quaternion.create(Math.PI / 6, vector[0], vector[1], vector[2]);
+        Assert.assertArrayEquals(vector, Quaternion.getUnitVector(quaternion), delta);
     }
 
     @Test
@@ -41,8 +41,8 @@ public class QuaternionTest {
 
     @Test
     public void getConjugationTest() {
-        double quaternion2 = quaternion.getConjugation();
-        Assert.assertThat(quaternion2, CoreMatchers.is(-2.0));
+        Quaternion quaternion2 = quaternion.getConjugation();
+        Assert.assertThat(quaternion2, CoreMatchers.is(new Quaternion(-1,-2,-3,4)));
     }
 
     @Test
@@ -67,8 +67,8 @@ public class QuaternionTest {
 
     @Test
     public void getInverseTest() {
-        double inverse = quaternion.getInverse();
-        Assert.assertEquals(inverse, -0.066666666666666667, delta);
+        Quaternion quaternion2 = quaternion.getInverse();
+        Assert.assertTrue(quaternion2.equals(new Quaternion(-0.03333333333333333, -0.06666666666666667,-0.1, 0.13333333333333333), delta));
     }
 
     @Test

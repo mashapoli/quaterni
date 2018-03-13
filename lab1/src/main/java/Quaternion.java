@@ -16,13 +16,13 @@ public class Quaternion {
     public static Quaternion create(final double angle, final double x, final double y, final double z) {
         double newX, newY, newZ, newW;
 
-        double half_Angle = angle / 2;
-        newW = cos(half_Angle);
+        double halfAngle = angle / 2;
+        newW = cos(halfAngle);
         if (x == 0 || y == 0 || z == 0) {
             newX = newY = newZ = 0;
 
         } else {
-            double newSin = sin(half_Angle);
+            double newSin = sin(halfAngle);
             double unitVector = sqrt(x * x + y * y + z * z);
             if (abs(unitVector - 1.0) > 1e-6) {
                 throw new IllegalStateException();
@@ -56,8 +56,8 @@ public class Quaternion {
         return new Quaternion(x - other.x, y - other.y, z - other.z, w - other.w);
     }
 
-    public double getConjugation() {
-        return w - x - y - z;
+    public Quaternion getConjugation() {
+        return new Quaternion(-x,-y,-z,w);
     }
 
     public Quaternion getMultiplier(Quaternion other) {
@@ -84,8 +84,9 @@ public class Quaternion {
         return new Quaternion(normX, normY, normZ, normW);
     }
 
-    public double getInverse() {
-        return getConjugation() / pow(getMagnitude(), 2.0);
+    public Quaternion getInverse() {
+        double powGetMagnitude = pow(getMagnitude(), 2.0);
+        return new Quaternion(-x/powGetMagnitude,-y/powGetMagnitude,-z/powGetMagnitude,w/powGetMagnitude);
     }
 
     public double[] getVector() {
@@ -107,6 +108,7 @@ public class Quaternion {
                 Double.compare(that.z, z) == 0 &&
                 Double.compare(that.w, w) == 0;
     }
+
 
     @Override
     public int hashCode() {
