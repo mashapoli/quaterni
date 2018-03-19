@@ -48,11 +48,11 @@ public class Quaternion {
         return new Quaternion(s * x, s * y, s * z, s * w);
     }
 
-    public Quaternion getSummation(Quaternion other) {
+    public Quaternion add(Quaternion other) {
         return new Quaternion(x + other.x, y + other.y, z + other.z, w + other.w);
     }
 
-    public Quaternion getSubtraction(Quaternion other) {
+    public Quaternion subtract(Quaternion other) {
         return new Quaternion(x - other.x, y - other.y, z - other.z, w - other.w);
     }
 
@@ -60,7 +60,7 @@ public class Quaternion {
         return new Quaternion(-x,-y,-z,w);
     }
 
-    public Quaternion getMultiplier(Quaternion other) {
+    public Quaternion multiply(Quaternion other) {
         double multiX = w * other.x + x * other.w + y * other.z - z * other.y;
         double multiY = w * other.y + y * other.w + z * other.x - x * other.z;
         double multiZ = w * other.z + z * other.w + x * other.y - y * other.x;

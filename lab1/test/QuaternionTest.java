@@ -28,14 +28,14 @@ public class QuaternionTest {
 
 
     @Test
-    public void getSummationTest() {
-        Quaternion quaternion2 = quaternion.getSummation(new Quaternion(1, -3, -4, 0));
+    public void addTest() {
+        Quaternion quaternion2 = quaternion.add(new Quaternion(1, -3, -4, 0));
         Assert.assertThat(quaternion2, CoreMatchers.is(new Quaternion(2, -1, -1, 4)));
     }
 
     @Test
-    public void getSubtractionTest() {
-        Quaternion quaternion2 = quaternion.getSubtraction(new Quaternion(-1, -2, -3, -4));
+    public void subtractTest() {
+        Quaternion quaternion2 = quaternion.subtract(new Quaternion(-1, -2, -3, -4));
         Assert.assertThat(quaternion2, CoreMatchers.is(new Quaternion(2, 4, 6, 8)));
     }
 
@@ -46,8 +46,8 @@ public class QuaternionTest {
     }
 
     @Test
-    public void getMultiplierTest() {
-        Quaternion quaternion2 = quaternion.getMultiplier(new Quaternion(10, 20, 30, 40));
+    public void multiplyTest() {
+        Quaternion quaternion2 = quaternion.multiply(new Quaternion(10, 20, 30, 40));
         Assert.assertThat(quaternion2, CoreMatchers.is(new Quaternion(80, 160, 240, 20)));
     }
 
